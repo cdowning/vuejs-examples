@@ -5,25 +5,32 @@
         <title></title>
         <style>
             .completed { text-decoration: line-through; }
+            .red { color: red; }
         </style>
     </head>
     <body>
         <div id="app">
-            <tasks-app list="tasks"></tasks-app>
-            
-            
+            <tasks v-bind:list="tasks"></tasks>
         </div>
         
         <template id="tasks-template">
-            <ul>
+            <h3>
+                <span v-show="remaining">{{remaining}}</span> Items Remaining
+            </h3>
+            <ul v-show="list.length">
                 <li :class="{ 'completed': task.completed }" 
                     v-for="task in list" 
-                    @click="toggleCompletedFor(task)"
-                >
+                    @click="task.completed = !task.completed">
                     {{ task.body }}
+                    <span @click="deleteTask(task)" class="red">Delete</span>
                 </li>
-                <!-- <li :class="['todo-item', 'list-item']" v-for="task in tasks">{{ task.body }}</li> -->
             </ul>
+            <p v-else>No tasks yet!</p>
+            <label>Add Item</label>
+            <input type="text" v-model="task" @keyup.enter="addTask(task)" value="" />
+            <br /><br />
+            <div><button @click="clearCompleted">Clear Completed</button></div>
+            
         </template>
         
         <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.js"></script>
