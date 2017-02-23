@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .error { color: red; }
+            textarea.red { border: 1px solid red; outline: none; }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Skill: {{ skill }}</h1>
+            <input type="text" v-model="points" />
+        </div>
+        
+        <div id="app-2">
+            <h1>{{ fullName }}</h1>
+            <input type="text" v-model="first" placeholder="First Name" />
+            <input type="text" v-model="last" placeholder="Last Name" />
+        </div>
+        
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.1/vue.js"></script>
+        <script>
+
+        var app = new Vue({
+            el: '#app',
+            
+            data: {
+                points: 400
+            },
+            
+            computed: {
+                skill: function() {
+                    if(this.points <= 100) {
+                        return 'Beginner';
+                    }
+                    return 'Advanced';
+                }
+            }
+        });
+        
+        var app2 = new Vue({
+            el: '#app-2',
+            
+            data: {
+                first: 'Caitlin',
+                last: 'Hawley',
+                fullName: this.first
+            },
+            
+            computed: {
+                fullName: function() {
+                    return this.first + ' ' + this.last;
+                }
+            }
+            
+            // watch: {
+            //     first: function(first) {
+            //         this.fullName = first + ' ' + this.last;
+            //     },
+            //     last: function(last) {
+            //         this.fullName = this.first + ' ' + last;
+            //     }
+            // 
+            // }
+        });
+        
+        </script>
+    </body>
+</html>

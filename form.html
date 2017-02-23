@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .error { color: red; }
+            textarea.red { border: 1px solid red; outline: none; }
+        </style>
+        <script src="vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <form>
+                <p class="error" v-show="!message">You must enter a message</p>
+                <div>
+                    <textarea v-model="message" v-bind:class="{ red: !message }"></textarea>
+                </div>
+                <button type="submit" v-show="message">Send Message</button>
+            </form>
+            <pre>
+                {{ $data | json }}
+            </pre>
+        </div>
+        
+        <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: ''
+            }
+        })
+        </script>
+    </body>
+</html>

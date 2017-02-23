@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            .error { color: red; }
+            textarea.red { border: 1px solid red; outline: none; }
+        </style>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="app" @submit.prevent="handleIt">
+            <form action="done.html">
+                <button type="submit">Submit Me!</button>
+            </form>
+            <pre>
+                
+            </pre>
+        </div>
+        
+        <div id="app-2">
+            
+            <button type="submit" @click="updateCount">Update Count {{count}}</button>
+        </div>
+        
+        <script>
+        // Vue.component('counter')
+        new Vue({
+            el: '#app',
+            methods: {
+                handleIt: function() {
+                    alert('Handled');
+                }
+            }
+        })
+        
+        var app2 = new Vue({
+            el: '#app-2',
+            
+            data: {
+                count: 0
+            },
+            
+            methods: {
+                updateCount: function() {
+                    this.count += 1;
+                }
+            }
+        })
+        </script>
+    </body>
+</html>

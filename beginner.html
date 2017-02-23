@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="vue.min.js"></script>
+        
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{ header }}</h1>
+            <p>{{ message }}</p>
+        </div>
+        
+        <div id="app-2">
+            <span v-bind:title="message">
+                Hover your mouse over me for a few seconds to see my dynamically bound title!
+            </span>
+        </div>
+        
+        <div id="app-3">
+            <p v-if="seen">Now you see me</p>
+        </div>
+        
+        <div id="app-4">
+            <ol v-for="todo in todos">
+                <li class="{{todo.class}}">
+                    {{ todo.text }}
+                </li>
+            </ol>
+        </div>
+        
+        <div id="app-5">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+        </div>
+        
+        <div id="app-6">
+            <p>{{ message }}</p>
+            <input v-model="message">
+        </div>
+        
+        <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                header: 'Hello',
+                message: 'Hello Vue.js!'
+            }
+        })
+        
+        var app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: 'You loaded this page on ' + new Date()
+            }
+        })
+        
+        var app3 = new Vue({
+            el: '#app-3',
+            data: {
+                seen: true
+            }
+        })
+        // if you type in chrome console -  app3.seen = false  - watch it disappear
+        
+        var app4 = new Vue({
+          el: '#app-4',
+          data: {
+            todos: [
+              { text: 'Learn JavaScript', class: 'list-item' },
+              { text: 'Learn Vue', class: 'list-item' },
+              { text: 'Build something awesome', class: 'list-item last' }
+            ]
+          }
+        })
+        // in console enter: app4.todos.push({ text: 'New item' })
+        
+        
+        var app5 = new Vue({
+          el: '#app-5',
+          data: {
+            message: 'Hello Vue.js!'
+          },
+          methods: {
+            reverseMessage: function () {
+              this.message = this.message.split('').reverse().join('')
+            }
+          }
+        })
+        
+        var app6 = new Vue({
+          el: '#app-6',
+          data: {
+            message: 'Hello Vue!'
+          }
+        })
+        
+        </script>
+    </body>
+</html>
