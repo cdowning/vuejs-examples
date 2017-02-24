@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            body { font-family: sans-serif; }
+            .alert { padding: 1rem 1.5rem; margin: 20px 0; width: 400px; display: block; position:relative; }
+            .alert--close { position: absolute; right: 7px; top: 3px; color: gray; font-size: 14px; }
+            .alert--success { background-color: rgba(76,175,80,.12); }
+            .alert--error { background-color: rgba(244,67,54,.12); }
+            .alert--warning { background-color: rgba(255,152,0,.12); }
+            .alert--info { background-color: rgba(33,150,243,.12); }
+            a { cursor: pointer; }
+            .red { color: red; }
+            .is-loading { background: lightgray; }
+            .completed { text-decoration: line-through; }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h2>All Tasks</h2>
+            <ul>
+                <li v-for="task in tasks" v-text="task.description"></li>
+            </ul>
+            <h2>Incomplete Tasks</h2>
+            <ul>
+                <li v-for="task in incompleteTasks" v-text="task.description"></li>
+            </ul>
+        </div>
+        
+        <script src="../js/vue.js"></script>
+        <script>
+            // https://laracasts.com/series/learn-vue-2-step-by-step/episodes/8?autoplay=true
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    tasks: [
+                        { description: 'Go to the store', completed: true },
+                        { description: 'Go to the bank', completed: false },
+                        { description: 'Go to work', completed: false },
+                        { description: 'Finish tutorial', completed: true }
+                    ]
+                }, 
+                methods: {
+                    // toggleClass: function() {
+                    //     this.isLoading = true;
+                    // }
+                },
+                computed: {
+                    reverseMessage: function() {
+                        return this.message.split('').reverse().join('');
+                    },
+                    incompleteTasks: function() {
+                        return this.tasks.filter(task => ! task.completed);
+                        // equivalent below
+                        // this.tasks.filter(function (task) {
+                        //     return ! task.completed;
+                        // })
+                    }
+                }
+                
+            })
+        
+        
+        </script>
+    </body>
+</html>
