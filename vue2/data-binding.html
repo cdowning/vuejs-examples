@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            body { font-family: sans-serif; }
+            .alert { padding: 1rem 1.5rem; margin: 20px 0; width: 400px; display: block; position:relative; }
+            .alert--close { position: absolute; right: 7px; top: 3px; color: gray; font-size: 14px; }
+            .alert--success { background-color: rgba(76,175,80,.12); }
+            .alert--error { background-color: rgba(244,67,54,.12); }
+            .alert--warning { background-color: rgba(255,152,0,.12); }
+            .alert--info { background-color: rgba(33,150,243,.12); }
+            a { cursor: pointer; }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" id="input" v-model="message" />
+            <p>{{message}}</p>
+        </div>
+        
+        
+        
+        <script src="../js/vue.js"></script>
+        <script>
+            let data = {
+                message: 'Hello World'
+            }
+            new Vue({
+                el: '#app',
+                data: data
+            })
+        
+        
+        </script>
+    </body>
+</html>

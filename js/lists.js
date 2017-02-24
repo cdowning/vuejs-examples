@@ -24,17 +24,14 @@ Vue.component('tasks', {
             // only show the items that are in progress
             this.list = this.list.filter(this.inProgress);
         },
-        addTask: function(task) {
+        addTask: function(newTask) {
             // const newItem = {
             //     body: task,
             //     completed: false
             // }
             // this.list.push(newItem);
-            this.list.push({
-                body: task,
-                completed: false
-            });
-            this.task = ''; 
+            this.list.push({ body: newTask, completed: false });
+            this.newTask = ''; 
         }
     }
     

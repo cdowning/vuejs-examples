@@ -27,7 +27,7 @@
             </ul>
             <p v-else>No tasks yet!</p>
             <label>Add Item</label>
-            <input type="text" v-model="task" @keyup.enter="addTask(task)" value="" />
+            <input type="text" v-model="newTask" @keyup.enter="addTask(newTask)" value="" />
             <br /><br />
             <div><button @click="clearCompleted">Clear Completed</button></div>
             

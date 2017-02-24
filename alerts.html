@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            body { font-family: sans-serif; }
+            .alert { padding: 1rem 1.5rem; margin: 20px 0; width: 400px; display: block; position:relative; }
+            .alert--close { position: absolute; right: 7px; top: 3px; color: gray; font-size: 14px; }
+            .alert--success { background-color: rgba(76,175,80,.12); }
+            .alert--error { background-color: rgba(244,67,54,.12); }
+            .alert--warning { background-color: rgba(255,152,0,.12); }
+            .alert--info { background-color: rgba(33,150,243,.12); }
+            a { cursor: pointer; }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <alert type="success"><strong>Success!</strong> Your account has been updated</alert>
+            <alert type="error"><strong>Error!</strong> Your changes have not been saved</alert>
+            <alert type="warning"><strong>Warning!</strong> This is a warning message</alert>
+            <alert type="info"><strong>informational!</strong> This is an informational message</alert>
+        </div>
+        
+        <template id="alert-template">
+            <div :class="alertClasses" v-show="show">
+                <slot></slot>
+                <!-- on click set show = to false -->
+                <a class="alert--close" @click="show = false">x</a>
+            </div>
+        </template>
+        
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.js"></script>
+        <script>
+        Vue.component('alert', {
+            props: ['type'],
+            template: '#alert-template',
+            
+            data: function() {
+                return { 
+                    show: true
+                };
+            },
+            computed: {
+                alertClasses: function() {
+                    var type = this.type;
+                    return { 
+                        'alert': true, // every alert will have a class of alert
+                        'alert--success': type == 'success',
+                        'alert--error': type == 'error',
+                        'alert--warning': type == 'warning',
+                        'alert--info': type == 'info'
+                    }
+                }
+            }
+        });
+        new Vue({
+            el: 'body'
+            
+        });
+
+        
+        </script>
+    </body>
+</html>
